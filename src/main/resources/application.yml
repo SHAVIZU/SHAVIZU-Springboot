@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_URL}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Seoul
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6380}
+  jpa:
+    database: mysql
+    generate-ddl: true #spring.jpa.hibernate.ddl-auto 속성을 사용할지 말지, default = false
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    show-sql: true #hibernate가 db에 날리는 쿼리를 보여준다.
+    properties:
+      hibernate:
+        format_sql: true #쿼리를 정리해서 보여준다.
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY:asdf}
+  access-exp: ${JWT_EXP_ACCESS:123456}
+  refresh-exp: ${JWT_EXP_REFRESH:123456}

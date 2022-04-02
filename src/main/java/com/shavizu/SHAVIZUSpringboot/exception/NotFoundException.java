@@ -5,9 +5,10 @@ import org.springframework.http.HttpStatus;
 
 public class NotFoundException extends ShavizuException {
 
-    public static final NotFoundException USER_NAME_NOT_FOUND = new NotFoundException("Username Not Found.");
+    public static final NotFoundException USER_NAME_NOT_FOUND = new NotFoundException("Username not found.");
 
     private NotFoundException(String message) {
         super(HttpStatus.NOT_FOUND.value(), message);
     }
+
 }

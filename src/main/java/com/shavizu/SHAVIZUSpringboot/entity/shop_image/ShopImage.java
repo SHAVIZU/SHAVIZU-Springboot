@@ -6,7 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -25,8 +24,8 @@ public class ShopImage extends BaseIdEntity {
     @Column(nullable = false)
     private Boolean isRepresentative;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shop_id")
+    @ManyToOne
+    @JoinColumn(name = "shop_id", nullable = false)
     private Shop shop;
 
     public static ShopImage createShopImage(String imageUrl, Boolean isRepresentative, Shop shop) {

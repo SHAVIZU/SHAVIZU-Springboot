@@ -7,10 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Table(name = "tbl_shop")
 public class Shop extends BaseIdCreatedAtEntity {
 
     @Column(length = 12, nullable = false, unique = true)

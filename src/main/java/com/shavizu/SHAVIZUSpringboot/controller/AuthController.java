@@ -21,7 +21,7 @@ public class AuthController {
     private final SignUpService signUpService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping("/signup")
     public TokenResponse signUp(@RequestBody @Valid SignUpRequest request) {
         return signUpService.execute(request);
     }

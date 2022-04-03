@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@RequestMapping("/brands")
+@RequestMapping("/items")
 @RestController
-public class BrandsController {
+public class ItemController {
 }

@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/sells")
 @RestController
-public class SellsController {
+public class SellController {
 }

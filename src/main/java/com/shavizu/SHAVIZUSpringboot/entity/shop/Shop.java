@@ -24,7 +24,7 @@ public class Shop extends BaseIdCreatedAtEntity {
     @Column(length = 45, nullable = false)
     private String name;
 
-    @Column(length = 12, nullable = false, unique = true)
+    @Column(columnDefinition = "char(12)", nullable = false, unique = true)
     private String registrationNumber;
 
     @Column(length = 10, nullable = false)

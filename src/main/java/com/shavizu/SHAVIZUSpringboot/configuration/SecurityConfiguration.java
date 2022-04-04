@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers(HttpMethod.GET,"/").permitAll()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/shops/password").permitAll()
                 .antMatchers( "/brands/**").permitAll()
                 .antMatchers("/items/**").permitAll()

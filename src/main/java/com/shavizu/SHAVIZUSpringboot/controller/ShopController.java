@@ -1,10 +1,10 @@
 package com.shavizu.SHAVIZUSpringboot.controller;
 
-import com.shavizu.SHAVIZUSpringboot.dto.request.SignUpRequest;
+import com.shavizu.SHAVIZUSpringboot.dto.request.RegisterShopRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdatePasswordRequest;
 import com.shavizu.SHAVIZUSpringboot.security.jwt.TokenResponse;
 import com.shavizu.SHAVIZUSpringboot.service.shop.DeleteShopService;
-import com.shavizu.SHAVIZUSpringboot.service.shop.SignUpService;
+import com.shavizu.SHAVIZUSpringboot.service.shop.RegisterShopService;
 import com.shavizu.SHAVIZUSpringboot.service.shop.UpdatePasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,14 @@ import javax.validation.Valid;
 @RestController
 public class ShopController {
 
-    private final SignUpService signUpService;
+    private final RegisterShopService registerShopService;
     private final DeleteShopService deleteShopService;
     private final UpdatePasswordService updatePasswordService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public TokenResponse registerShop(@RequestBody @Valid SignUpRequest request) {
-        return signUpService.execute(request);
+    public TokenResponse registerShop(@RequestBody @Valid RegisterShopRequest request) {
+        return registerShopService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

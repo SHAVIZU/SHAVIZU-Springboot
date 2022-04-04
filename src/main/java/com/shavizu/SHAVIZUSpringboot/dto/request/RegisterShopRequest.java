@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SignUpRequest {
+public class RegisterShopRequest {
 
     @NotBlank
     @Length(min = 6, max = 12)

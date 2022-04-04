@@ -1,6 +1,6 @@
 package com.shavizu.SHAVIZUSpringboot.service.shop;
 
-import com.shavizu.SHAVIZUSpringboot.dto.request.SignUpRequest;
+import com.shavizu.SHAVIZUSpringboot.dto.request.RegisterShopRequest;
 import com.shavizu.SHAVIZUSpringboot.entity.shop.Shop;
 import com.shavizu.SHAVIZUSpringboot.entity.shop.repository.ShopRepository;
 import com.shavizu.SHAVIZUSpringboot.exception.ConflictException;
@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class SignUpService {
+public class RegisterShopService {
 
     private final ShopRepository shopRepository;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
-    public TokenResponse execute(SignUpRequest request) {
+    public TokenResponse execute(RegisterShopRequest request) {
         //로그인할 때 사용하는 아이디, 사업자 등록번호는 unique해야 한다.
         shopRepository.findByUserIdOrRegistrationNumber(request.getUserId(), request.getRegistrationNumber())
                 .ifPresent(s -> {

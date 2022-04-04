@@ -20,4 +20,21 @@ spring:
 
 jwt:
   secret-key: ${JWT_SECRET_KEY:asdf}
-  access-exp: ${JWT_EXP_ACCESS:123456}
+  access-exp: ${JWT_ACCESS_EXP:123456}
+
+aws:
+  s3:
+    bucket: ${AWS_S3_BUCKET:bucket}
+    shop-image-url: ${SHOP_IMAGE_URL:image/}
+    item-image-url: ${ITEM_IMAGE_URL:image/}
+    url: ${S3_BASE_URL:https://}
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_S3_ACCESS:s3_access}
+      secret-key: ${AWS_S3_SECRET:s3_secret}

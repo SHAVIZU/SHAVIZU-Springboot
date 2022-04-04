@@ -19,8 +19,7 @@ public class JwtProvider {
     //토큰 생성
     public TokenResponse generateToken(String username) {
         return new TokenResponse(
-          generateToken(username, jwtProperties.getAccessExp(), JwtProperties.ACCESS_TYPE),
-          generateToken(username, jwtProperties.getRefreshExp(), JwtProperties.REFRESH_TYPE)
+          generateToken(username, jwtProperties.getAccessExp(), JwtProperties.ACCESS_TYPE)
         );
     }
 

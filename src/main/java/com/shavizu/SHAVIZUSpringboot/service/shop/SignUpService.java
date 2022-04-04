@@ -1,4 +1,4 @@
-package com.shavizu.SHAVIZUSpringboot.service.auth;
+package com.shavizu.SHAVIZUSpringboot.service.shop;
 
 import com.shavizu.SHAVIZUSpringboot.dto.request.SignUpRequest;
 import com.shavizu.SHAVIZUSpringboot.entity.shop.Shop;

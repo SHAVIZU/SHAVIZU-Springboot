@@ -4,9 +4,6 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6380}
   jpa:
     database: mysql
     generate-ddl: true #spring.jpa.hibernate.ddl-auto 속성을 사용할지 말지, default = false

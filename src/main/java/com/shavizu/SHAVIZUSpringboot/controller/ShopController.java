@@ -2,9 +2,11 @@ package com.shavizu.SHAVIZUSpringboot.controller;
 
 import com.shavizu.SHAVIZUSpringboot.dto.request.SignUpRequest;
 import com.shavizu.SHAVIZUSpringboot.security.jwt.TokenResponse;
+import com.shavizu.SHAVIZUSpringboot.service.shop.DeleteShopService;
 import com.shavizu.SHAVIZUSpringboot.service.shop.SignUpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +21,18 @@ import javax.validation.Valid;
 public class ShopController {
 
     private final SignUpService signUpService;
+    private final DeleteShopService deleteShopService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/signup")
+    @PostMapping
     public TokenResponse signUp(@RequestBody @Valid SignUpRequest request) {
         return signUpService.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping()
+    public void deleteShop() {
+        deleteShopService.execute();
     }
 
 }

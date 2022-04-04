@@ -18,6 +18,7 @@ public class DeleteShopService {
 
     public void execute() {
         Shop shop = authenticationFacade.getShop();
+        //S3 연동하면 S3에서도 삭제하기
         shopRepository.delete(shop);
     }
 

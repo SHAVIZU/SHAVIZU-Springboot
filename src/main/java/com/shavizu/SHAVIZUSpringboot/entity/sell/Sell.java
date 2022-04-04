@@ -1,19 +1,24 @@
 package com.shavizu.SHAVIZUSpringboot.entity.sell;
 
 import com.shavizu.SHAVIZUSpringboot.entity.BaseIdCreatedAtEntity;
+import com.shavizu.SHAVIZUSpringboot.entity.inventory.Inventory;
 import com.shavizu.SHAVIZUSpringboot.entity.item.Item;
 import com.shavizu.SHAVIZUSpringboot.entity.shop.Shop;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -40,6 +45,9 @@ public class Sell extends BaseIdCreatedAtEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Inventory> inventories = new ArrayList<>();
 
     public static Sell createSell(Integer price, Integer discountRate, Shop shop, Item item) {
         Sell sell = new Sell();

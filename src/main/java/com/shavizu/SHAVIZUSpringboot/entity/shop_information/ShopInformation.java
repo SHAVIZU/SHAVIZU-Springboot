@@ -50,18 +50,30 @@ public class ShopInformation {
     @JoinColumn(name = "shop_id", nullable = false)
     private Shop shop;
 
-    public static ShopInformation createShopInformation(Shop shop, String telephone, String address, String detailedAddress, String openingHours, String description, BigDecimal latitude, BigDecimal longitude) {
+    public static ShopInformation createShopInformation(Shop shop) {
         ShopInformation shopInformation = new ShopInformation();
         shopInformation.shop = shop;
-        shopInformation.telephone = telephone;
-        shopInformation.address = address;
-        shopInformation.detailedAddress = detailedAddress;
-        shopInformation.openingHours = openingHours;
-        shopInformation.description = description;
-        shopInformation.latitude = latitude;
-        shopInformation.longitude = longitude;
-
+        shopInformation.telephone = "";
+        shopInformation.address = "";
+        shopInformation.detailedAddress = "";
+        shopInformation.openingHours = "";
+        shopInformation.description = null;
+        shopInformation.latitude = BigDecimal.ZERO;
+        shopInformation.longitude = BigDecimal.ZERO;
         return shopInformation;
+    }
+
+    public void updateShopInformation(String telephone, String address,
+                                      String detailedAddress, String openingHours,
+                                      String description, BigDecimal latitude, BigDecimal longitude) {
+        this.telephone = telephone;
+        this.address = address;
+        this.detailedAddress = detailedAddress;
+        this.openingHours = openingHours;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+
     }
 
 }

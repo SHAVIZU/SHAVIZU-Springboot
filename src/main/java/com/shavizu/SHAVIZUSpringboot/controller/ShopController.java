@@ -1,16 +1,19 @@
 package com.shavizu.SHAVIZUSpringboot.controller;
 
 import com.shavizu.SHAVIZUSpringboot.dto.request.RegisterShopRequest;
+import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateShopInformationRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdatePasswordRequest;
 import com.shavizu.SHAVIZUSpringboot.security.jwt.TokenResponse;
 import com.shavizu.SHAVIZUSpringboot.service.shop.DeleteShopService;
 import com.shavizu.SHAVIZUSpringboot.service.shop.RegisterShopService;
+import com.shavizu.SHAVIZUSpringboot.service.shop.UpdateShopInfoService;
 import com.shavizu.SHAVIZUSpringboot.service.shop.UpdatePasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,6 +29,7 @@ public class ShopController {
     private final RegisterShopService registerShopService;
     private final DeleteShopService deleteShopService;
     private final UpdatePasswordService updatePasswordService;
+    private final UpdateShopInfoService updateShopInfoService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -43,6 +47,12 @@ public class ShopController {
     @PatchMapping("/password")
     public void updatePassword(@RequestBody @Valid UpdatePasswordRequest request) {
         updatePasswordService.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/info")
+    public void updateShopInfo(@RequestBody @Valid UpdateShopInformationRequest request) {
+        updateShopInfoService.execute(request);
     }
 
 }

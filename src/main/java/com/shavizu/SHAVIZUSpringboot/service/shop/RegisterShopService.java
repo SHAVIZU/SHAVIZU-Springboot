@@ -3,6 +3,8 @@ package com.shavizu.SHAVIZUSpringboot.service.shop;
 import com.shavizu.SHAVIZUSpringboot.dto.request.RegisterShopRequest;
 import com.shavizu.SHAVIZUSpringboot.entity.shop.Shop;
 import com.shavizu.SHAVIZUSpringboot.entity.shop.repository.ShopRepository;
+import com.shavizu.SHAVIZUSpringboot.entity.shop_information.ShopInformation;
+import com.shavizu.SHAVIZUSpringboot.entity.shop_information.repository.ShopInformationRepository;
 import com.shavizu.SHAVIZUSpringboot.exception.ConflictException;
 import com.shavizu.SHAVIZUSpringboot.security.jwt.JwtProvider;
 import com.shavizu.SHAVIZUSpringboot.security.jwt.TokenResponse;
@@ -17,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RegisterShopService {
 
     private final ShopRepository shopRepository;
+    private final ShopInformationRepository shopInformationRepository;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
@@ -37,6 +40,11 @@ public class RegisterShopService {
                         request.getRegistrationNumber(),
                         request.getBossName()
                 )
+        );
+
+        //회원가입할 때 샵 정보 엔티티도 생성
+        shopInformationRepository.save(
+                ShopInformation.createShopInformation(shop)
         );
 
         //토큰 반환

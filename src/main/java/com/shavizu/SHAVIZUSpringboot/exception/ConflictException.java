@@ -7,6 +7,8 @@ public class ConflictException extends ShavizuException {
 
     public static final ConflictException ALREADY_EXISTS_SHOP = new ConflictException("Shop name or id already exists.");
 
+    public static final ConflictException ALREADY_EXISTS_STYLE_CODE = new ConflictException("Style code already exists.");
+
     private ConflictException(String message) {
         super(HttpStatus.CONFLICT.value(), message);
     }

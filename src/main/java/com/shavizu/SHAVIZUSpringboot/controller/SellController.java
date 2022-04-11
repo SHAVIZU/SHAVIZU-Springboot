@@ -15,7 +15,7 @@ public class SellController {
 
     private final SellDetailsService sellDetailsService;
 
-    @GetMapping("/{sell_id}")
+    @GetMapping("/details/{sell_id}")
     public SellDetailsResponse getSellDetails(@PathVariable("sell_id") long sellId) {
         return sellDetailsService.execute(sellId);
     }

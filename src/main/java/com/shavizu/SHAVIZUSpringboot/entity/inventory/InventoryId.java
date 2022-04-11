@@ -12,6 +12,6 @@ public class InventoryId implements Serializable {
 
     private Long sellId;
 
-    private Long itemId;
+    private Long itemSizeId;
 
 }

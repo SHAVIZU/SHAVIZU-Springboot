@@ -1,6 +1,6 @@
 package com.shavizu.SHAVIZUSpringboot.entity.inventory;
 
-import com.shavizu.SHAVIZUSpringboot.entity.item.Item;
+import com.shavizu.SHAVIZUSpringboot.entity.item_size.ItemSize;
 import com.shavizu.SHAVIZUSpringboot.entity.sell.Sell;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class Inventory {
     private Long sellId;
 
     @Id
-    private Long itemId;
+    private Long itemSizeId;
 
     @Column(nullable = false)
     private Long amount;
@@ -39,13 +39,13 @@ public class Inventory {
 
     @MapsId
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item item;
+    @JoinColumn(name = "item_size_id")
+    private ItemSize itemSize;
 
-    public static Inventory createInventory(Sell sell, Item item, Long amount) {
+    public static Inventory createInventory(Sell sell, ItemSize itemSize, Long amount) {
         Inventory inventory = new Inventory();
         inventory.sell = sell;
-        inventory.item = item;
+        inventory.itemSize = itemSize;
         inventory.amount = amount;
 
         return inventory;

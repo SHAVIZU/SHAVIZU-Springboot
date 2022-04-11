@@ -1,7 +1,7 @@
 package com.shavizu.SHAVIZUSpringboot.controller;
 
 import com.shavizu.SHAVIZUSpringboot.dto.request.AddBrandRequest;
-import com.shavizu.SHAVIZUSpringboot.dto.response.GetBrandsResponse;
+import com.shavizu.SHAVIZUSpringboot.dto.response.BrandsResponse;
 import com.shavizu.SHAVIZUSpringboot.service.brand.AddBrandService;
 import com.shavizu.SHAVIZUSpringboot.service.brand.GetBrandsService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class BrandController {
     }
 
     @GetMapping
-    public GetBrandsResponse getBrands(@RequestParam String keyword) {
+    public BrandsResponse getBrands(@RequestParam String keyword) {
         return getBrandsService.execute(keyword);
     }
 

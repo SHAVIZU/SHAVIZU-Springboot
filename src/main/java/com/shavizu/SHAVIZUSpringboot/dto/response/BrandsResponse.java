@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class GetBrandsResponse {
+public class BrandsResponse {
 
     private final List<BrandResponse> brands;
 

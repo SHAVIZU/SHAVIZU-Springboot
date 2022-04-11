@@ -1,6 +1,6 @@
 package com.shavizu.SHAVIZUSpringboot.service.brand;
 
-import com.shavizu.SHAVIZUSpringboot.dto.response.GetBrandsResponse;
+import com.shavizu.SHAVIZUSpringboot.dto.response.BrandsResponse;
 import com.shavizu.SHAVIZUSpringboot.entity.brand.Brand;
 import com.shavizu.SHAVIZUSpringboot.entity.brand.repository.BrandRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +17,11 @@ public class GetBrandsService {
 
     private final BrandRepository brandRepository;
 
-    public GetBrandsResponse execute(String keyword) {
+    public BrandsResponse execute(String keyword) {
         List<Brand> brands = brandRepository.findTop5ByNameLikeOrderByName(keyword);
-        return new GetBrandsResponse(
+        return new BrandsResponse(
                 brands.stream().map(
-                        b -> GetBrandsResponse.BrandResponse.createBrandResponse(b.getId(), b.getName())
+                        b -> BrandsResponse.BrandResponse.createBrandResponse(b.getId(), b.getName())
                 ).collect(Collectors.toList())
         );
     }

@@ -9,6 +9,8 @@ public class NotFoundException extends ShavizuException {
 
     public static final NotFoundException BRAND_NOT_FOUND = new NotFoundException("Brand not found.");
 
+    public static final NotFoundException SELL_NOT_FOUND = new NotFoundException("Sell not found.");
+
     private NotFoundException(String message) {
         super(HttpStatus.NOT_FOUND.value(), message);
     }

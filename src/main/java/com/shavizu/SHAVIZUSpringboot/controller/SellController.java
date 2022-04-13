@@ -1,8 +1,10 @@
 package com.shavizu.SHAVIZUSpringboot.controller;
 
+import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateDiscountRateRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateInventoryRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.response.SellDetailsResponse;
 import com.shavizu.SHAVIZUSpringboot.service.inventory.UpdateInventoryService;
+import com.shavizu.SHAVIZUSpringboot.service.price.UpdateDiscountRateService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.GetSellDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ public class SellController {
 
     private final GetSellDetailsService getSellDetailsService;
     private final UpdateInventoryService updateInventoryService;
+    private final UpdateDiscountRateService updateDiscountRateService;
 
     @GetMapping("/details/{sell_id}")
     public SellDetailsResponse getSellDetails(@PathVariable("sell_id") long sellId) {
@@ -33,6 +36,12 @@ public class SellController {
     @PatchMapping("/inventory/{sell_id}")
     public void updateInventory(@PathVariable("sell_id") Long sellId, @RequestBody @Valid UpdateInventoryRequest request) {
         updateInventoryService.execute(sellId, request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/discount/{sell_id}")
+    public void updateDiscountRate(@PathVariable("sell_id") Long sellId, @RequestBody @Valid UpdateDiscountRateRequest request) {
+        updateDiscountRateService.execute(sellId, request);
     }
 
 }

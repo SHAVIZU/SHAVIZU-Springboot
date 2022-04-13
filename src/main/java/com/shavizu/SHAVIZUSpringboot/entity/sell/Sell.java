@@ -25,8 +25,8 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_sell",
         uniqueConstraints = {
-            @UniqueConstraint(columnNames = {"shop_id", "item_id"})
-})
+                @UniqueConstraint(columnNames = {"shop_id", "item_id"})
+        })
 public class Sell extends BaseIdCreatedAtEntity {
 
     @Column(nullable = false)
@@ -58,6 +58,11 @@ public class Sell extends BaseIdCreatedAtEntity {
         sell.item = item;
 
         return sell;
+    }
+
+    public void updateDiscountRate(Integer discountRate) {
+        this.discountRate = discountRate;
+        this.discountPrice = this.price / ((100 - discountRate) / 100);
     }
 
 }

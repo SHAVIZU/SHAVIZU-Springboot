@@ -18,9 +18,6 @@ public class UpdateInventoryRequest {
     public static class InventoryDto {
 
         @NotNull
-        private Long sellId;
-
-        @NotNull
         private Long itemSizeId;
 
         @NotNull

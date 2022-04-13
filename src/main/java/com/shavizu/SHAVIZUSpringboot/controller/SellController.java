@@ -27,9 +27,9 @@ public class SellController {
         return getSellDetailsService.execute(sellId);
     }
 
-    @PatchMapping("/inventory")
-    public void updateInventory(@RequestBody @Valid UpdateInventoryRequest request) {
-        updateInventoryService.execute(request);
+    @PatchMapping("/inventory/{sell_id}")
+    public void updateInventory(@PathVariable("sell_id") Long sellId, @RequestBody @Valid UpdateInventoryRequest request) {
+        updateInventoryService.execute(sellId, request);
     }
 
 }

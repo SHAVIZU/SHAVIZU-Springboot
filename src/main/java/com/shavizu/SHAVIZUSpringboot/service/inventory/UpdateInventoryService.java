@@ -23,17 +23,17 @@ public class UpdateInventoryService {
     private final InventoryRepository inventoryRepository;
     private final SellRepository sellRepository;
 
-    public void execute(UpdateInventoryRequest request) {
+    public void execute(Long sellId, UpdateInventoryRequest request) {
         Shop shop = authenticationFacade.getShop();
 
-        sellRepository.findById(request.getInventories().get(0).getSellId())
+        sellRepository.findById(sellId)
                 .filter(sell -> sell.getShop().equals(shop))
                 .orElseThrow(() -> {
                     throw UnAuthorizedException.NOT_AUTHENTICATED;
                 });
 
         for (UpdateInventoryRequest.InventoryDto i : request.getInventories()) {
-            Inventory inventory = inventoryRepository.findById(new InventoryId(i.getSellId(), i.getItemSizeId()))
+            Inventory inventory = inventoryRepository.findById(new InventoryId(sellId, i.getItemSizeId()))
                     .orElseThrow(() -> {
                         throw NotFoundException.INVENTORY_NOT_FOUND;
                     });

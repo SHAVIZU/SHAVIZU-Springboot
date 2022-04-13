@@ -11,6 +11,8 @@ public class NotFoundException extends ShavizuException {
 
     public static final NotFoundException SELL_NOT_FOUND = new NotFoundException("Sell not found.");
 
+    public static final NotFoundException INVENTORY_NOT_FOUND = new NotFoundException("Inventory not found.");
+
     private NotFoundException(String message) {
         super(HttpStatus.NOT_FOUND.value(), message);
     }

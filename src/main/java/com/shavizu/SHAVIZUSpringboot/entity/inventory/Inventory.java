@@ -51,4 +51,8 @@ public class Inventory {
         return inventory;
     }
 
+    public void updateAmount(long amount) {
+        this.amount = amount;
+    }
+
 }

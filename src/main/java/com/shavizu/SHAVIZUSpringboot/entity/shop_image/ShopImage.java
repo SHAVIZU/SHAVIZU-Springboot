@@ -23,16 +23,16 @@ public class ShopImage extends BaseIdEntity {
     private String imageUrl;
 
     @Column(nullable = false)
-    private Boolean isRepresentative;
+    private Integer sequence;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id", nullable = false)
     private Shop shop;
 
-    public static ShopImage createShopImage(String imageUrl, Boolean isRepresentative, Shop shop) {
+    public static ShopImage createShopImage(String imageUrl, Integer sequence, Shop shop) {
         ShopImage shopImage = new ShopImage();
         shopImage.imageUrl = imageUrl;
-        shopImage.isRepresentative = isRepresentative;
+        shopImage.sequence = sequence;
         shopImage.shop = shop;
 
         return shopImage;

@@ -24,9 +24,11 @@ import javax.persistence.Table;
 public class Inventory {
 
     @Id
+    @Column(name = "sell_id")
     private Long sellId;
 
     @Id
+    @Column(name = "item_size_id")
     private Long itemSizeId;
 
     @Column(nullable = false)

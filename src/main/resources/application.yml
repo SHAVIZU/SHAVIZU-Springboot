@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://${DB_URL}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Seoul
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://${DB_URL:asdf}?characterEncoding=UTF-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Seoul
+    username: ${DB_USERNAME:adf}
+    password: ${DB_PASSWORD:asdf}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql

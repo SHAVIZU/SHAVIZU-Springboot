@@ -6,9 +6,9 @@ import com.shavizu.SHAVIZUSpringboot.dto.response.StyleCodeSearchResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import static com.querydsl.core.types.Projections.constructor;
+import java.util.List;
 
-import static com.querydsl.core.types.Projections.list;
+import static com.querydsl.core.types.Projections.constructor;
 import static com.shavizu.SHAVIZUSpringboot.entity.brand.QBrand.brand;
 import static com.shavizu.SHAVIZUSpringboot.entity.item.QItem.item;
 
@@ -20,22 +20,20 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
 
     @Override
     public StyleCodeSearchResponse findAllByStyleCode(String styleCode) {
-        return jpaQuery.select(
-                constructor(
-                        StyleCodeSearchResponse.class,
-                        list(
-                                constructor(
-                                        StyleCodeSearchDto.class,
-                                        item.name,
-                                        brand.name,
-                                        item.styleCode
-                                )
+        List<StyleCodeSearchDto> items =
+                jpaQuery.select(
+                        constructor(
+                                StyleCodeSearchDto.class,
+                                item.name,
+                                brand.name,
+                                item.styleCode
                         )
                 )
-        )
         .from(item)
         .where(item.styleCode.like(styleCode))
         .join(item.brand, brand)
-        .fetchOne();
+        .fetch();
+
+        return new StyleCodeSearchResponse(items);
     }
 }

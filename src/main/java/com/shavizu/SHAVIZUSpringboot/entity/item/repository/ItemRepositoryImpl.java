@@ -24,6 +24,7 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
                 jpaQuery.select(
                         constructor(
                                 StyleCodeSearchDto.class,
+                                item.id,
                                 item.name,
                                 brand.name,
                                 item.styleCode

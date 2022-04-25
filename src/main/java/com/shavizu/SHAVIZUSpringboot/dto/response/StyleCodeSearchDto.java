@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class StyleCodeSearchDto {
 
+    private final Long id;
+
     private final String name;
 
     private final String brand;

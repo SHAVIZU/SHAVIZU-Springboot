@@ -19,20 +19,26 @@ jobs:
           tag-semver: |
             {{version}}
             {{major}}.{{minor}}
-      -
-        name: Set up Docker Buildx
+
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        shell: bash
+        
+      - name: Build
+        run: ./gradlew build
+        shell: bash
+        
+      - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile
-          platforms: Linux/UNIX
-          push: true
+
+      - name: Docker Image Build
+        run: docker build -t syxxn/shavizu .
+
+      - name: Upload to DockerHub
+        run: docker push syxxn/shavizu

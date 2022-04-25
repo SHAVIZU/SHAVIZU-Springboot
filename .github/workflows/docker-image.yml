@@ -4,9 +4,8 @@ on:
   push:
 
 jobs:
-  deploy:
-    name: upload-image
-    runs-on: ubuntu-18.04
+  build:
+    runs-on: ubuntu-latest
     
     steps:
       -

@@ -38,7 +38,8 @@ public class RegisterShopService {
                         passwordEncoder.encode(request.getPassword()),
                         request.getName(),
                         request.getRegistrationNumber(),
-                        request.getBossName()
+                        request.getBossName(),
+                        request.getOpeningDate()
                 )
         );
 

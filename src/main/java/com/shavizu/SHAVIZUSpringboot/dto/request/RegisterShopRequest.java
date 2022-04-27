@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,5 +32,8 @@ public class RegisterShopRequest {
     @NotBlank
     @Length(min = 2, max = 10)
     private String bossName;
+
+    @NotNull
+    private LocalDate openingDate;
 
 }

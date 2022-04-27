@@ -1,6 +1,8 @@
 package com.shavizu.SHAVIZUSpringboot.entity.item.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.shavizu.SHAVIZUSpringboot.dto.response.ItemDetailsResponse;
+import com.shavizu.SHAVIZUSpringboot.dto.response.SizeDto;
 import com.shavizu.SHAVIZUSpringboot.dto.response.StyleCodeSearchDto;
 import com.shavizu.SHAVIZUSpringboot.dto.response.StyleCodeSearchResponse;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import java.util.List;
 import static com.querydsl.core.types.Projections.constructor;
 import static com.shavizu.SHAVIZUSpringboot.entity.brand.QBrand.brand;
 import static com.shavizu.SHAVIZUSpringboot.entity.item.QItem.item;
+import static com.shavizu.SHAVIZUSpringboot.entity.item_size.QItemSize.itemSize;
 
 @RequiredArgsConstructor
 @Repository
@@ -37,4 +40,25 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
 
         return new StyleCodeSearchResponse(items);
     }
+
+    @Override
+    public ItemDetailsResponse findByItemId (Long id) {
+        return jpaQuery.select(
+                        constructor(
+                                ItemDetailsResponse.class,
+                                item.imageUrl,
+                                constructor(
+                                        SizeDto.class,
+                                        itemSize.id,
+                                        itemSize.size
+                                )
+                        )
+                )
+                .from(item)
+                .where(item.id.eq(id))
+                .join(itemSize.item, item)
+                .fetchOne();
+    }
+
+
 }

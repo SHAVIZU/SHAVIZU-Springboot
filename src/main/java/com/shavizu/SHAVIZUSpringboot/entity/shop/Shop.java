@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,19 +39,23 @@ public class Shop extends BaseIdCreatedAtEntity {
     @Column(length = 10, nullable = false)
     private String bossName;
 
+    @Column(nullable = false)
+    private LocalDate openingDate;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ShopInformation shopInformation;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ShopImage> shopImages = new ArrayList<>();
 
-    public static Shop createShop(String userId, String password, String name, String registrationNumber, String bossName) {
+    public static Shop createShop(String userId, String password, String name, String registrationNumber, String bossName, LocalDate openingDate) {
         Shop shop = new Shop();
         shop.userId = userId;
         shop.password = password;
         shop.name = name;
         shop.registrationNumber = registrationNumber;
         shop.bossName = bossName;
+        shop.openingDate = openingDate;
 
         return shop;
     }

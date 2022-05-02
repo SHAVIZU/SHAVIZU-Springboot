@@ -5,10 +5,13 @@ import com.shavizu.SHAVIZUSpringboot.dto.response.ItemDetailsResponse;
 import com.shavizu.SHAVIZUSpringboot.dto.response.SizeDto;
 import com.shavizu.SHAVIZUSpringboot.dto.response.StyleCodeSearchDto;
 import com.shavizu.SHAVIZUSpringboot.dto.response.StyleCodeSearchResponse;
+import com.shavizu.SHAVIZUSpringboot.entity.item.Item;
+import com.shavizu.SHAVIZUSpringboot.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.querydsl.core.types.Projections.constructor;
 import static com.querydsl.core.types.Projections.list;
@@ -44,22 +47,28 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
 
     @Override
     public ItemDetailsResponse findByItemId (Long id) {
-        return jpaQuery.select(
-                constructor(
-                        ItemDetailsResponse.class,
-                        item.imageUrl,
-                        list(
-                                constructor(
-                                        SizeDto.class,
-                                        itemSize.id,
-                                        itemSize.size
-                                )
-                        )
-                ))
-                .from(itemSize)
-                .where(itemSize.item.id.eq(id))
-                .join(itemSize.item, item)
+        Item i = jpaQuery.select(
+                    item
+                )
+                .from(item)
+                .where(item.id.eq(id))
+                .join(item.itemSizes, itemSize)
+                .fetchJoin()
                 .fetchOne();
+
+        if (i == null) {
+            throw NotFoundException.ITEM_NOT_FOUND;
+        }
+
+        return new ItemDetailsResponse(
+                i.getImageUrl(),
+                i.getItemSizes().stream().map(
+                        s -> new SizeDto(
+                                s.getId(),
+                                s.getSize()
+                        )
+                ).collect(Collectors.toList())
+        );
     }
 
 

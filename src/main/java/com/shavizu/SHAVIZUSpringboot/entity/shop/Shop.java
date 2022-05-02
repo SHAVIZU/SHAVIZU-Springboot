@@ -42,10 +42,10 @@ public class Shop extends BaseIdCreatedAtEntity {
     @Column(nullable = false)
     private LocalDate openingDate;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "shop", cascade = CascadeType.ALL)
     private ShopInformation shopInformation;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<ShopImage> shopImages = new ArrayList<>();
 
     public static Shop createShop(String userId, String password, String name, String registrationNumber, String bossName, LocalDate openingDate) {

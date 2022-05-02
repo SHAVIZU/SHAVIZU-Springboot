@@ -35,7 +35,7 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
                         )
                 )
         .from(item)
-        .where(item.styleCode.like(styleCode))
+        .where(item.styleCode.like(styleCode + "%"))
         .join(item.brand, brand)
         .fetch();
 

@@ -46,11 +46,11 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
         return jpaQuery.select(
                         constructor(
                                 ItemDetailsResponse.class,
-                                item.imageUrl,
+                                item.imageUrl.as("imageUrl"),
                                 constructor(
                                         SizeDto.class,
-                                        itemSize.id,
-                                        itemSize.size
+                                        itemSize.id.as("id"),
+                                        itemSize.size.as("size")
                                 )
                         )
                 )

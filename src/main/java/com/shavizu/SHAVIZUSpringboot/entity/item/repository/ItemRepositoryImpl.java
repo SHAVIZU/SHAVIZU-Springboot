@@ -59,7 +59,7 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
                 )
                 .from(item)
                 .where(item.id.eq(id))
-                .join(itemSize.item, item)
+                .join(item.itemSizes, itemSize)
                 .fetchOne();
     }
 

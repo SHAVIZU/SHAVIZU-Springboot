@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.querydsl.core.types.Projections.constructor;
-import static com.querydsl.core.types.Projections.list;
 import static com.shavizu.SHAVIZUSpringboot.entity.brand.QBrand.brand;
 import static com.shavizu.SHAVIZUSpringboot.entity.item.QItem.item;
 import static com.shavizu.SHAVIZUSpringboot.entity.item_size.QItemSize.itemSize;
@@ -44,23 +43,22 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
 
     @Override
     public ItemDetailsResponse findByItemId (Long id) {
-        return jpaQuery.select(
+        List<SizeDto> sizes = jpaQuery.select(
                         constructor(
-                                ItemDetailsResponse.class,
-                                item.imageUrl,
-                                list(
-                                        constructor(
-                                                SizeDto.class,
-                                                itemSize.id,
-                                                itemSize.size
-                                        )
-                                )
+                                SizeDto.class,
+                                itemSize.id,
+                                itemSize.size
                         )
                 )
                 .from(itemSize)
                 .where(itemSize.item.id.eq(id))
                 .join(itemSize.item, item)
-                .fetchOne();
+                .fetch();
+
+        return new ItemDetailsResponse(
+                item.imageUrl.toString(),
+                sizes
+        );
     }
 
 

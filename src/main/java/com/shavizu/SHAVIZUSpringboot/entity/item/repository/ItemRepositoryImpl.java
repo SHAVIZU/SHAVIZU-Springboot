@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.querydsl.core.types.Projections.constructor;
+import static com.querydsl.core.types.Projections.list;
 import static com.shavizu.SHAVIZUSpringboot.entity.brand.QBrand.brand;
 import static com.shavizu.SHAVIZUSpringboot.entity.item.QItem.item;
 import static com.shavizu.SHAVIZUSpringboot.entity.item_size.QItemSize.itemSize;
@@ -47,10 +48,12 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
                         constructor(
                                 ItemDetailsResponse.class,
                                 item.imageUrl.as("imageUrl"),
-                                constructor(
-                                        SizeDto.class,
-                                        itemSize.id.as("id"),
-                                        itemSize.size.as("size")
+                                list(
+                                        constructor(
+                                                SizeDto.class,
+                                                itemSize.id.as("id"),
+                                                itemSize.size.as("size")
+                                        )
                                 )
                         )
                 )

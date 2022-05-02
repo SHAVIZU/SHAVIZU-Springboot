@@ -44,7 +44,7 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
 
     @Override
     public ItemDetailsResponse findByItemId (Long id) {
-        return jpaQuery.select(
+        return (ItemDetailsResponse) jpaQuery.select(
                         constructor(
                                 ItemDetailsResponse.class,
                                 item.imageUrl,
@@ -60,7 +60,7 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
                 .from(item)
                 .where(item.id.eq(id))
                 .join(item.itemSizes, itemSize)
-                .fetchOne();
+                .fetch();
     }
 
 

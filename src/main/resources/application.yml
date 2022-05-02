@@ -14,7 +14,6 @@ spring:
     properties:
       hibernate:
         format_sql: true #쿼리를 정리해서 보여준다.
-
   jackson:
     property-naming-strategy: SNAKE_CASE
 

@@ -17,7 +17,7 @@ public class ShavizuExceptionHandler {
     @ExceptionHandler(ShavizuException.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(final ShavizuException e) {
         log.error(e.getCause().getMessage());
-        return new ResponseEntity<>(new ErrorResponse(e.getStatus(), e.getMessage()), HttpStatus.valueOf(e.getStatus()));
+        return new ResponseEntity<>(new ErrorResponse(e.getStatus(), e.getLocalizedMessage()), HttpStatus.valueOf(e.getStatus()));
     }
 
     //@Valid 어노테이션을 통과하지 못할 때

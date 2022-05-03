@@ -1,4 +1,4 @@
-package com.shavizu.SHAVIZUSpringboot.service.price;
+package com.shavizu.SHAVIZUSpringboot.service.sell;
 
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateDiscountRateRequest;
 import com.shavizu.SHAVIZUSpringboot.entity.sell.Sell;

@@ -25,7 +25,7 @@ public class ShopInformation {
     @Id
     private Long shopId;
 
-    @Column(length = 11, nullable = false, unique = true)
+    @Column(length = 11, nullable = false)
     private String telephone;
 
     @Column(length = 100, nullable = false)
@@ -54,7 +54,7 @@ public class ShopInformation {
     public static ShopInformation createShopInformation(Shop shop) {
         ShopInformation shopInformation = new ShopInformation();
         shopInformation.shop = shop;
-        shopInformation.telephone = String.valueOf(Math.random());
+        shopInformation.telephone = "";
         shopInformation.address = "";
         shopInformation.detailedAddress = "";
         shopInformation.openingHours = "";

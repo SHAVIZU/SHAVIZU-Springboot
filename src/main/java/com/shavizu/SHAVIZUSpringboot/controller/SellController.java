@@ -5,7 +5,7 @@ import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateDiscountRateRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateInventoryRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.response.SellDetailsResponse;
 import com.shavizu.SHAVIZUSpringboot.service.inventory.UpdateInventoryService;
-import com.shavizu.SHAVIZUSpringboot.service.price.UpdateDiscountRateService;
+import com.shavizu.SHAVIZUSpringboot.service.sell.UpdateDiscountRateService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.AddSellService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.GetSellDetailsService;
 import lombok.RequiredArgsConstructor;

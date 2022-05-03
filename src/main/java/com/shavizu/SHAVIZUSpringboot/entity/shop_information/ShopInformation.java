@@ -14,6 +14,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.util.Random;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -53,7 +54,7 @@ public class ShopInformation {
     public static ShopInformation createShopInformation(Shop shop) {
         ShopInformation shopInformation = new ShopInformation();
         shopInformation.shop = shop;
-        shopInformation.telephone = "";
+        shopInformation.telephone = String.valueOf(Math.random());
         shopInformation.address = "";
         shopInformation.detailedAddress = "";
         shopInformation.openingHours = "";

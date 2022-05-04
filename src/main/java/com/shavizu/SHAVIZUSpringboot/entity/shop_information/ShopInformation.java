@@ -14,7 +14,6 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Random;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

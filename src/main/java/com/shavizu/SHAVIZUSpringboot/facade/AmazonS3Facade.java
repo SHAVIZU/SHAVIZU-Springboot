@@ -24,15 +24,9 @@ public class AmazonS3Facade {
         amazonS3.deleteObject(awsS3Properties.getBucket(), objectName);
     }
 
-    public String uploadImage(MultipartFile file, boolean isShop) {
+    public String uploadImage(MultipartFile file) throws IOException {
         String extension = getExtension(file);
-        String filePath;
-        try{
-            filePath = saveImage(file, extension, isShop);
-        } catch (IOException e) {
-            throw BadRequestException.FILE_SAVE_FAILED_EXCEPTION;
-        }
-        return filePath;
+        return  saveImage(file, extension);
     }
 
     private String getExtension(MultipartFile file) {
@@ -42,8 +36,8 @@ public class AmazonS3Facade {
         return file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
     }
 
-    private String saveImage(MultipartFile file, String extension, boolean isShop) throws IOException {
-        String baseImageUrl = isShop ? awsS3Properties.getShopImageUrl() : awsS3Properties.getItemImageUrl();
+    private String saveImage(MultipartFile file, String extension) throws IOException {
+        String baseImageUrl = awsS3Properties.getShopImageUrl();
 
         String filePath = baseImageUrl + file.getOriginalFilename() + extension;
 

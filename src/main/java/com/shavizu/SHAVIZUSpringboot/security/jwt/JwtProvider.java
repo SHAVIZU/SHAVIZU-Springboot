@@ -17,7 +17,7 @@ public class JwtProvider {
     private final JwtProperties jwtProperties;
 
     //토큰 생성
-    private TokenResponse generateToken(String username) {
+    public TokenResponse generateToken(String username) {
         String accessToken = Jwts.builder()
                 .setSubject(username)
                 .setHeaderParam("typ", JwtProperties.ACCESS_TYPE)

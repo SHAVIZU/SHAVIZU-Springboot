@@ -17,20 +17,18 @@ public class JwtProvider {
     private final JwtProperties jwtProperties;
 
     //토큰 생성
-    public TokenResponse generateToken(String username) {
-        return new TokenResponse(
-          generateToken(username, jwtProperties.getAccessExp(), JwtProperties.ACCESS_TYPE)
-        );
-    }
-
-    private String generateToken(String username, Long expiration, String type) {
-        return Jwts.builder()
+    private TokenResponse generateToken(String username) {
+        String accessToken = Jwts.builder()
                 .setSubject(username)
-                .setHeaderParam("typ", type)
+                .setHeaderParam("typ", JwtProperties.ACCESS_TYPE)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getAccessExp()))
                 .compact();
+
+        return new TokenResponse(
+                accessToken
+        );
     }
 
     //Bearer 토큰 추출

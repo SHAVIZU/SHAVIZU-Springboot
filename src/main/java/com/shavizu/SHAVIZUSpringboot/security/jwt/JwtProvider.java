@@ -12,7 +12,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    private static final String PREFIX = "Bearer";
+    private static final String PREFIX = "Bearer ";
 
     private final JwtProperties jwtProperties;
 
@@ -36,7 +36,7 @@ public class JwtProvider {
         if (token != null
                 && token.startsWith(PREFIX)
                 && token.length() > PREFIX.length()) {
-            return token.substring(PREFIX.length() + 1);
+            return token.substring(PREFIX.length());
         }
         return null;
     }

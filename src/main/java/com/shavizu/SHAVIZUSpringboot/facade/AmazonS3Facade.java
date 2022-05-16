@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Component
@@ -39,7 +40,7 @@ public class AmazonS3Facade {
     private String saveImage(MultipartFile file, String extension) throws IOException {
         String baseImageUrl = awsS3Properties.getShopImageUrl();
 
-        String filePath = baseImageUrl + file.getOriginalFilename() + extension;
+        String filePath = baseImageUrl + UUID.randomUUID() + extension;
 
         amazonS3.putObject(new PutObjectRequest(awsS3Properties.getBucket(), filePath, file.getInputStream(), null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));

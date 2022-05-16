@@ -19,7 +19,7 @@ public class GetBrandsService {
     private final BrandRepository brandRepository;
 
     public BrandListResponse execute(String keyword) {
-        List<Brand> brands = brandRepository.findTop5ByNameLikeOrderByName(keyword);
+        List<Brand> brands = brandRepository.findTop5ByNameLikeOrderByName("%" + keyword + "%");
         return new BrandListResponse(
                 brands.stream().map(
                         b -> BrandDto.builder()

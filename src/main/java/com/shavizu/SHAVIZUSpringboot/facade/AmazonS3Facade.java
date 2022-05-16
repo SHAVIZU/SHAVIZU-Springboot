@@ -21,7 +21,7 @@ public class AmazonS3Facade {
     private final AwsS3Properties awsS3Properties;
 
     public void delete(String objectUrl) {
-        String objectName = objectUrl.replace(awsS3Properties.getUrl() + awsS3Properties.getShopImageUrl(), "");
+        String objectName = objectUrl.replace(awsS3Properties.getUrl(), ""); //object name은 폴더/파일명
         amazonS3.deleteObject(awsS3Properties.getBucket(), objectName);
     }
 

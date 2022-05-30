@@ -16,7 +16,7 @@ public class ShavizuExceptionHandler {
 
     @ExceptionHandler(ShavizuException.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(final ShavizuException e) {
-        log.error(e.getLocalizedMessage());
+        log.error(e.getMessage());
         return new ResponseEntity<>(new ErrorResponse(e.getStatus(), e.getLocalizedMessage()), HttpStatus.valueOf(e.getStatus()));
     }
 

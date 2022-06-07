@@ -13,7 +13,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Check the token"); // 토큰의 형식이 잘못된 경우 400
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Check the token"); // 토큰의 형식이 잘못된 경우 400
     }
 
 }

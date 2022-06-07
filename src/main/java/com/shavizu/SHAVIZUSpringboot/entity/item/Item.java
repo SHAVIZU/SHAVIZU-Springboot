@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,6 +32,7 @@ public class Item extends BaseIdEntity {
     @Column(length = 20, nullable = false, unique = true)
     private String styleCode;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     private Category category;
 

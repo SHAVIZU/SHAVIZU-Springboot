@@ -4,8 +4,10 @@ import com.shavizu.SHAVIZUSpringboot.dto.request.AddSellRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateDiscountRateRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.request.UpdateInventoryRequest;
 import com.shavizu.SHAVIZUSpringboot.dto.response.SellDetailsResponse;
+import com.shavizu.SHAVIZUSpringboot.dto.response.SellsResponse;
 import com.shavizu.SHAVIZUSpringboot.service.inventory.UpdateInventoryService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.DeleteSellService;
+import com.shavizu.SHAVIZUSpringboot.service.sell.GetSellsService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.UpdateDiscountRateService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.AddSellService;
 import com.shavizu.SHAVIZUSpringboot.service.sell.GetSellDetailsService;
@@ -34,6 +36,7 @@ public class SellController {
     private final UpdateDiscountRateService updateDiscountRateService;
     private final AddSellService addSellService;
     private final DeleteSellService deleteSellService;
+    private final GetSellsService getSellsService;
 
     @GetMapping("/details/{sell_id}")
     public SellDetailsResponse getSellDetails(@PathVariable("sell_id") long sellId) {
@@ -62,6 +65,11 @@ public class SellController {
     @DeleteMapping("/{sell_id}")
     public void deleteSell(@PathVariable("sell_id") Long sellId) {
         deleteSellService.execute(sellId);
+    }
+
+    @GetMapping
+    public SellsResponse getSells() {
+        return getSellsService.execute();
     }
 
 }

@@ -46,7 +46,8 @@ public class Sell extends BaseIdCreatedAtEntity {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "sell", cascade = CascadeType.ALL)
     private List<Inventory> inventories = new ArrayList<>();
 
     public static Sell createSell(Integer price, Integer discountRate, Shop shop, Item item) {

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.querydsl.core.types.Projections.constructor;
-import static com.querydsl.core.types.Projections.list;
 import static com.shavizu.SHAVIZUSpringboot.entity.brand.QBrand.brand;
 import static com.shavizu.SHAVIZUSpringboot.entity.item.QItem.item;
 import static com.shavizu.SHAVIZUSpringboot.entity.item_size.QItemSize.itemSize;
@@ -47,9 +46,7 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
 
     @Override
     public ItemDetailsResponse findByItemId (Long id) {
-        Item i = jpaQuery.select(
-                    item
-                )
+        Item i = jpaQuery.select(item)
                 .from(item)
                 .where(item.id.eq(id))
                 .join(item.itemSizes, itemSize)
@@ -70,6 +67,5 @@ public class ItemRepositoryImpl implements ItemRepositoryExtension {
                 ).collect(Collectors.toList())
         );
     }
-
 
 }

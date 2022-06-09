@@ -67,6 +67,7 @@ public class SellRepositoryImpl implements SellRepositoryExtension {
                         constructor(
                                 SellsDto.class,
                                 sell.discountPrice,
+                                sell.discountRate,
                                 item.name,
                                 item.imageUrl,
                                 brand.name,

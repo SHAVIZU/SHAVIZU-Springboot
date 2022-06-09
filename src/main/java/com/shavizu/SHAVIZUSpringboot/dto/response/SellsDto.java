@@ -11,11 +11,13 @@ public class SellsDto {
 
     private final int discountPrice;
 
+    private final int discountRate;
+
     private final String itemName;
 
     private final String imageUrl;
 
-    private final String brand;
+    private final String brandName;
 
     private final List<InventoryDto> inventories;
 

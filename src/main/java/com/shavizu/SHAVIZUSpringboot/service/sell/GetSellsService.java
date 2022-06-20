@@ -27,9 +27,8 @@ public class GetSellsService {
 
     public SellsResponse execute() {
         Shop shop = authenticationFacade.getShop();
-
+        
         List<Sell> sells = sellRepository.findAllByShop(shop);
-
         return new SellsResponse(sells.stream().map(
                 s -> new SellsDto(
                             s.getDiscountPrice(),

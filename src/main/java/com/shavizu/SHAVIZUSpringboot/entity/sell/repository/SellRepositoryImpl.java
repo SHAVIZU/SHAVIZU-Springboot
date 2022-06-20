@@ -71,37 +71,4 @@ public class SellRepositoryImpl implements SellRepositoryExtension {
                 .fetch();
     }
 
-//    @Override
-//    public List<SellsDto> findAllByShop(Shop s) {
-//        return jpaQuery.select(
-//                        constructor(
-//                                SellsDto.class,
-//                                sell.discountPrice,
-//                                sell.discountRate,
-//                                item.name,
-//                                item.imageUrl,
-//                                brand.name,
-//                                list(
-//                                        constructor(
-//                                                InventoryDto.class,
-//                                                constructor(
-//                                                        InventoryDto.InventoryId.class,
-//                                                        inventory.sellId,
-//                                                        inventory.itemSizeId
-//                                                ),
-//                                                itemSize.size,
-//                                                inventory.amount
-//                                        )
-//                                )
-//                        )
-//                )
-//                .from(sell)
-//                .where(sell.shop.eq(s))
-//                .join(sell.item, item)
-//                .join(item.brand, brand)
-//                .join(sell.inventories, inventory)
-//                .join(inventory.itemSize, itemSize)
-//                .fetch();
-//    }
-
 }

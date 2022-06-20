@@ -9,5 +9,4 @@ import java.util.List;
 public interface SellRepositoryExtension {
     SellDetailsResponse findBySellId(long sellId);
     List<Sell> findAllByShop(Shop s);
-    //List<SellsDto> findAllByShop(Shop shop);
 }

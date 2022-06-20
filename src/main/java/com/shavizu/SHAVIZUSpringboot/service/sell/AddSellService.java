@@ -49,8 +49,8 @@ public class AddSellService {
 
             inventoryRepository.save(
                     Inventory.createInventory(
-                            sell,
-                            itemSize,
+                            sell.getId(),
+                            itemSize.getId(),
                             i.getAmount()
                     )
             );

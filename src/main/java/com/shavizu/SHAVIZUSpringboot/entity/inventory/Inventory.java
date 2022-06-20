@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,11 +25,11 @@ import javax.persistence.Table;
 public class Inventory {
 
     @Id
-    @Column(name = "sell_id")
+    @Column(name = "sell_id", nullable = false)
     private Long sellId;
 
     @Id
-    @Column(name = "item_size_id")
+    @Column(name = "item_size_id", nullable = false)
     private Long itemSizeId;
 
     @Column(nullable = false)
@@ -44,10 +45,10 @@ public class Inventory {
     @JoinColumn(name = "item_size_id")
     private ItemSize itemSize;
 
-    public static Inventory createInventory(Sell sell, ItemSize itemSize, Long amount) {
+    public static Inventory createInventory(Long sellId, Long itemSizeId, Long amount) {
         Inventory inventory = new Inventory();
-        inventory.sell = sell;
-        inventory.itemSize = itemSize;
+        inventory.sellId = sellId;
+        inventory.itemSizeId = itemSizeId;
         inventory.amount = amount;
 
         return inventory;

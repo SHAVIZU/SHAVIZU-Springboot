@@ -3,6 +3,7 @@ package com.shavizu.SHAVIZUSpringboot.service.brand;
 import com.shavizu.SHAVIZUSpringboot.dto.request.AddBrandRequest;
 import com.shavizu.SHAVIZUSpringboot.entity.brand.Brand;
 import com.shavizu.SHAVIZUSpringboot.entity.brand.repository.BrandRepository;
+import com.shavizu.SHAVIZUSpringboot.exception.ConflictException;
 import com.shavizu.SHAVIZUSpringboot.facade.AuthenticationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,14 @@ public class AddBrandService {
     public void execute(AddBrandRequest request) {
         authenticationFacade.getShop();
 
-        if(brandRepository.findByName(request.getName()).isEmpty()) {
-            brandRepository.save(
+        brandRepository.findByName(request.getName())
+                .ifPresent(b -> {
+                    throw ConflictException.ALREADY_EXISTS_BRAND;
+                });
+
+        brandRepository.save(
                     Brand.createBrand(request.getName())
-            );
-        }
+        );
     }
 
 }

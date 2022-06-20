@@ -28,10 +28,7 @@ public class GetSellsService {
     public SellsResponse execute() {
         Shop shop = authenticationFacade.getShop();
 
-        //List<SellsDto> sells = sellRepository.findAllByShop(shop);
-
-        List<Sell> sells = sellRepository.findByShop(shop);
-
+        List<Sell> sells = sellRepository.findAllByShop(shop);
 
         return new SellsResponse(sells.stream().map(
                 s -> new SellsDto(

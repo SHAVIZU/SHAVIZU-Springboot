@@ -36,7 +36,7 @@ public class SellRepositoryImpl implements SellRepositoryExtension {
     @Override
     public List<Sell> findAllByShop(Shop s) {
         return jpaQuery.select(sell)
-                .from(sell)
+                .from(sell).distinct()
                 .where(sell.shop.eq(s))
                 .join(sell.item, item).fetchJoin()
                 .join(item.brand, brand).fetchJoin()

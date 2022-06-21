@@ -7,20 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class InventoryDto {
 
-    private final InventoryId id;
+    private final long itemSizeId;
 
     private final String size;
 
     private final long amount;
-
-    @Getter
-    @AllArgsConstructor
-    public static class InventoryId {
-
-        private final long sellId;
-
-        private final long itemSizeId;
-
-    }
 
 }

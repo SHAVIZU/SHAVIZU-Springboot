@@ -7,10 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class SellDto {
 
-    private final long price;
+    private final int price;
 
     private final int discountRate;
 
-    private final long discountPrice;
+    private final int discountPrice;
 
 }

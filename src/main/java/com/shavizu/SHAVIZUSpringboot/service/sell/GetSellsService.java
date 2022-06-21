@@ -1,6 +1,7 @@
 package com.shavizu.SHAVIZUSpringboot.service.sell;
 
 import com.shavizu.SHAVIZUSpringboot.dto.response.InventoryDto;
+import com.shavizu.SHAVIZUSpringboot.dto.response.SellInventoryDto;
 import com.shavizu.SHAVIZUSpringboot.dto.response.SellsDto;
 import com.shavizu.SHAVIZUSpringboot.dto.response.SellsResponse;
 import com.shavizu.SHAVIZUSpringboot.entity.inventory.repository.InventoryRepository;
@@ -27,21 +28,17 @@ public class GetSellsService {
 
     public SellsResponse execute() {
         Shop shop = authenticationFacade.getShop();
-        
         List<Sell> sells = sellRepository.findAllByShop(shop);
         return new SellsResponse(sells.stream().map(
                 s -> new SellsDto(
+                            s.getId(),
                             s.getDiscountPrice(),
                             s.getDiscountRate(),
                             s.getItem().getName(),
                             s.getItem().getImageUrl(),
                             s.getItem().getBrand().getName(),
                             s.getInventories().stream().map(
-                                    i -> new InventoryDto(
-                                                new InventoryDto.InventoryId(
-                                                        i.getSellId(),
-                                                        i.getItemSizeId()
-                                                ),
+                                    i -> new SellInventoryDto(
                                                 i.getItemSize().getSize(),
                                                 i.getAmount()
                                         )

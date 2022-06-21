@@ -9,6 +9,8 @@ import java.util.List;
 @AllArgsConstructor
 public class SellsDto {
 
+    private final long sellId;
+
     private final int discountPrice;
 
     private final int discountRate;
@@ -19,6 +21,6 @@ public class SellsDto {
 
     private final String brandName;
 
-    private final List<InventoryDto> inventories;
+    private final List<SellInventoryDto> inventories;
 
 }

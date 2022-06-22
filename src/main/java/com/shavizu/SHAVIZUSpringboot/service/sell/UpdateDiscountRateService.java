@@ -25,14 +25,16 @@ public class UpdateDiscountRateService {
                 .orElseThrow(() -> {
                     throw NotFoundException.SELL_NOT_FOUND;
                 });
-        if (sell.getShop().equals(authenticationFacade.getShop())) {
+        if (!sell.getShop().equals(authenticationFacade.getShop())) {
             throw UnAuthorizedException.NOT_AUTHENTICATED;
         }
+        
+        int discountRate = request.getDiscountRate();
 
-        if (request.getDiscountRate() < 0) {
+        if (discountRate < 0 || discountRate >= 100) {
             throw BadRequestException.EXCEPTION;
         }
-        sell.updateDiscountRate(request.getDiscountRate());
+        sell.updateDiscountRate(discountRate);
     }
 
 }

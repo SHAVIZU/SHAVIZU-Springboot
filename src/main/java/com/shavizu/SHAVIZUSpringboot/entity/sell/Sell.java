@@ -54,7 +54,7 @@ public class Sell extends BaseIdCreatedAtEntity {
         Sell sell = new Sell();
         sell.price = price;
         sell.discountRate = discountRate;
-        sell.discountPrice = price * (100 - discountRate);
+        sell.discountPrice = price * ((100 - discountRate)/100);
         sell.shop = shop;
         sell.item = item;
 

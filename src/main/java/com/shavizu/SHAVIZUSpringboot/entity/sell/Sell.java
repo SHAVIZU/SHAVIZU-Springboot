@@ -54,7 +54,7 @@ public class Sell extends BaseIdCreatedAtEntity {
         Sell sell = new Sell();
         sell.price = price;
         sell.discountRate = discountRate;
-        sell.discountPrice = price * ((100 - discountRate)/100);
+        sell.discountPrice = price * (int) (price * ((100 - discountRate) / 100.0));
         sell.shop = shop;
         sell.item = item;
 
@@ -63,7 +63,7 @@ public class Sell extends BaseIdCreatedAtEntity {
 
     public void updateDiscountRate(Integer discountRate) {
         this.discountRate = discountRate;
-        this.discountPrice = this.price * ((100 - discountRate) / 100);
+        this.discountPrice = (int) (this.price * ((100 - discountRate) / 100.0));
     }
 
 }
